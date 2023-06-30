@@ -1,1 +1,1 @@
-Python Lab
+Python Lab for Pokemon
