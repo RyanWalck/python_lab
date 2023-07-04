@@ -7,6 +7,7 @@ from django.views.generic.edit import CreateView
 from django.views.generic import DetailView
 from django.views.generic.edit import CreateView, UpdateView
 from django.urls import reverse
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 # Create your views here.
 
 class Home(TemplateView):
@@ -77,3 +78,8 @@ class PokemonUpdate(UpdateView):
     template_name = "pokemon_update.html"
     def get_success_url(self):
         return reverse('artist_detail', kwargs={'pk': self.object.pk})
+    
+class PokemonDelete(DeleteView):
+    model = Pokemon
+    template_name = "pokemon_delete_confirmation.html"
+    success_url = "/pokemons/"

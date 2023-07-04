@@ -9,5 +9,6 @@ urlpatterns = [
     path('pokemons/new/', views.PokemonCreate.as_view(), name="pokemon_create"),
     path('pokemons/<int:pk>/', views.PokemonDetail.as_view(), name="pokemon_detail"),
     path('pokemons/<int:pk>/update',views.PokemonUpdate.as_view(), name="pokemon_update"),
+    path('artists/<int:pk>/delete',views.PokemonDelete.as_view(), name="pokemon_delete"),
 
 ]
