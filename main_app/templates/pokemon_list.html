@@ -47,16 +47,15 @@
 </form>
 <div class="gallery">
   {% for pokemon in pokemon %}
-  <a href="">
-    <h1 class="title pt-5">{{header}}</h1>
+  <a href="{% url 'artist_detail' artist.pk %}">
     <div class="card">
       <div class="card-image">
         <figure class="image is-square">
-          <img src="{{artist.img}}" alt="{{pokemon.name}}" />
+          <img src="{{artist.img}}" alt="{{artist.name}}" />
         </figure>
       </div>
       <div class="card-header">
-        <p class="card-header-title">{{pokemon.name}}</p>
+        <p class="card-header-title">{{artist.name}}</p>
       </div>
     </div>
   </a>

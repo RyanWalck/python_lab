@@ -3,6 +3,10 @@ from django.views import View
 from django.http import HttpResponse 
 from django.views.generic.base import TemplateView
 from .models import Pokemon
+from django.views.generic.edit import CreateView
+from django.views.generic import DetailView
+from django.views.generic.edit import CreateView, UpdateView
+from django.urls import reverse
 # Create your views here.
 
 class Home(TemplateView):
@@ -54,3 +58,22 @@ class PokemonList(TemplateView):
             context["pokemon"] = Pokemon.objects.all() 
             context["header"] = "Trending Pokemon"
         return context
+    
+class PokemonCreate(CreateView):
+    model = Pokemon
+    fields = ['name', 'img', 'bio', 'verified_pokemon']
+    template_name = "pokemon_create.html"
+    def get_success_url(self):
+        return reverse('artist_detail', kwargs={'pk': self.object.pk})
+
+class PokemonDetail(DetailView):
+    model = Pokemon
+    fields = ['name', 'img', 'bio', 'verified_pokemon']
+    template_name = "pokemon_create.html"
+
+class PokemonUpdate(UpdateView):
+    model = Pokemon
+    fields = ['name', 'img', 'bio', 'verified_pokemon']
+    template_name = "pokemon_update.html"
+    def get_success_url(self):
+        return reverse('artist_detail', kwargs={'pk': self.object.pk})
