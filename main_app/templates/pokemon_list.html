@@ -29,3 +29,38 @@
   {% endfor %}
 </div>
 {% endblock %}
+
+{% extends 'base.html' %} {% block content %}
+
+<h1 class="title">Trending Pokemon</h1>
+
+<form class="mb-5" method="get">
+  <div class="field has-addons">
+    <div class="control">
+      <input class="input" type="text" name="name" placeholder="name" />
+    </div>
+    <div class="control">
+      <input class="button is-success" type="submit" value="Search" />
+    </div>
+  </div>
+  <a class="button is-dark" href="{% url 'pokemon_list' %}">Clear Search</a>
+</form>
+<div class="gallery">
+  {% for pokemon in pokemon %}
+  <a href="">
+    <h1 class="title pt-5">{{header}}</h1>
+    <div class="card">
+      <div class="card-image">
+        <figure class="image is-square">
+          <img src="{{artist.img}}" alt="{{pokemon.name}}" />
+        </figure>
+      </div>
+      <div class="card-header">
+        <p class="card-header-title">{{pokemon.name}}</p>
+      </div>
+    </div>
+  </a>
+  {% endfor %}
+</div>
+
+{% endblock %}

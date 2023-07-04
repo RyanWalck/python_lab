@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views import View 
 from django.http import HttpResponse 
 from django.views.generic.base import TemplateView
-
+from .models import Pokemon
 # Create your views here.
 
 class Home(TemplateView):
@@ -37,7 +37,20 @@ class PokemonList(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["pokemons"] = pokemons # this is where we add the key into our context object for the view to use
+        context["pokemons"] = pokemons 
         
         return context
     
+class PokemonList(TemplateView):
+    template_name = "pokemon_list.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        name = self.request.GET.get("name")
+        if name != None:
+            context["pokemon"] = Pokemon.objects.filter(name__icontains=name)
+            context["header"] = f"Searching for {name}"
+        else:
+            context["pokemon"] = Pokemon.objects.all() 
+            context["header"] = "Trending Pokemon"
+        return context
