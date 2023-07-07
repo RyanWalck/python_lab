@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import Pokemon # import the Artist model from models.py
+from .models import Pokemon, Moves
 # Register your models here.
 
-admin.site.register(Pokemon) # this line will add the model to the admin panel
+admin.site.register(Pokemon)
+admin.site.register(Moves)

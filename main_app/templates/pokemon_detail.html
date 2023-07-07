@@ -12,16 +12,59 @@
         <span>Verified</span>
     </div>
     {% endif %}
+    <form class="mb-5" action="{% url 'moves_create' pokemon.pk %}" method="post">
+        {% csrf_token %}
+        <div class="field has-addons">
+            <div class="control">
+                <input
+                    class="input"
+                    type="text"
+                    name="title"
+                    placeholder="Title"
+                    required
+                />
+            </div>
+            <div class="control">
+                <input
+                    class="input"
+                    type="number"
+                    name="damage"
+                    placeholder="Dameage in Numbers"
+                    min="1"
+                    required
+                />
+            </div>
+            <div class="control">
+                <input class="button is-primary" type="submit" value="Add a Move" />
+            </div>
+        </div>
+    </form>
     <h1 class="title">{{pokemon.name}}</h1>
 </div>
+<div class="detail__songs mb-5">
+    <h3 class="title is-3">Moves</h3>
+    {% for move in pokemon.moves.all %}
+    <div class="moves">
+      <span>{{forloop.counter}}</span>
+      <span><b>{{move.title}}</b></span>
+      <span>{{move.length}}</span>
+    </div>
+		{% empty %}
+    <article class="message">
+      <div class="message-header">
+        <p>No Moves to use</p>
+      </div>
+    </article>
+    {% endfor %}
+  </div>
 <div class="detail__container">
     <div class="buttons">
-    <a href="{% url 'artist_update' artist.pk %}" class="button is-info"> Updates
+    <a href="{% url 'pokemon_update' pokemon.pk %}" class="button is-info"> Updates
         <span class="icon">
             <i class="fas fa-edit"></i>
         </span>
     </a>
-    <a href="{% url 'artist_delete' artist.pk %}" class="button is-danger">Delete
+    <a href="{% url 'pokemon_delete' pokemon.pk %}" class="button is-danger">Delete
         <span class="icon">
             <i class="fas fa-trash-alt"></i>
         </span>

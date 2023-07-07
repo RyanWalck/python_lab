@@ -1,3 +1,4 @@
+
 from django.db import models
 
 # Create your models here.
@@ -14,3 +15,12 @@ class Pokemon(models.Model):
 
     class Meta:
         ordering = ['name']
+
+class Moves(models.Model):
+
+    title = models.CharField(max_length=150)
+    length = models.IntegerField(default=0)
+    pokemon = models.ForeignKey(Pokemon, on_delete=models.CASCADE, related_name="moves")
+
+    def __str__(self):
+        return self.title
